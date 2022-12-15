@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="assignmentForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="projectName"> Project Name </label>
+          <input type="text" id="projectName" class="form-control" formControlName="projectName">
+          <span *ngIf="!assignmentForm.get('projectName').valid && assignmentForm.get('projectName').touched"
+            class="help-block">
+            <span *ngIf="assignmentForm.get('projectName').errors?.forbiddenProjectName">This project name is
+              forbidden!</span>
+            <span *ngIf="assignmentForm.get('projectName').errors?.required">This field is required!</span>
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="mail"> Mail </label>
+          <input type="text" id="mail" class="form-control" formControlName="mail">
+        </div>
+        <div class="form-group">
+          <label for="status"> Project Status </label>
+          <select id="status" class="form-control" formControlName="project-status">
+            <option *ngFor="let status of projectStatus" [ngValue]="status">{{status}}</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!assignmentForm.valid">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
